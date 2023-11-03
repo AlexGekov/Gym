@@ -1,7 +1,7 @@
 const express = require("express")
 const path = require("path")
 const cookieParser = require("cookie-parser")
-const { auth } = require("../middlewares/authenticate")
+const { auth } = require("../../middlewares/authenticate")
 
 function expressConfig(app) {
     app.use(express.static(path.resolve(__dirname, '../static')))

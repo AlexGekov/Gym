@@ -1,4 +1,4 @@
-const animal = require("../models/animal")
+const animal = require("../../models/animal")
 
 exports.GetAll = () => animal.find().lean()
 

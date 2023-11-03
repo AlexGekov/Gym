@@ -1,4 +1,4 @@
-const User = require("../models/user")
+const User = require("../../models/user")
 const bcrypt = require("bcrypt")
 const jwt = require("../lib/jwt")
 const { SECRET } = require("../configs/SuperSecret")
