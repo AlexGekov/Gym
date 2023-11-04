@@ -25,6 +25,7 @@ header {
 }
 
 .light{
+    transition: 0.3s ;
     text-decoration: none;
     color: #000000;
 }

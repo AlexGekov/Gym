@@ -6,18 +6,13 @@
 
 .darkmode {
     background:  rgb(0, 0, 0);
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .dark {
     text-decoration: none;
     color: #ffffff;
 }
-
-/* .dark:hover {
-    transition: all 0.3s ease 0s;
-    font-size: larger;
-} */
 
 section{
     display: grid;
