@@ -4,6 +4,10 @@
     background-color: #ffffff
 }
 
+.darkmode {
+    
+}
+
 section{
     display: grid;
     place-items: center;
@@ -99,7 +103,7 @@ section{
     visibility: hidden;
 }
 
-.thingy:checked + .switch + .first {
+.thingy:checked + .switch {
     background: #000000;
     color: #ffffff
 }
