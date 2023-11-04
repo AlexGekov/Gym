@@ -1,6 +1,8 @@
 let darkMode = localStorage.getItem("darkMode")
 let darkModeToggle = document.getElementsByClassName("switch")[0]
 
+console.log(document.getElementsByClassName("show"))
+
 
 const enableDarkMode = () => {
     document.body.classList.add("darkmode")

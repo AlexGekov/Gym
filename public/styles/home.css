@@ -9,6 +9,16 @@
     transition: 0.3s;
 }
 
+.dark {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* .dark:hover {
+    transition: all 0.3s ease 0s;
+    font-size: larger;
+} */
+
 section{
     display: grid;
     place-items: center;
