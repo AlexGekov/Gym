@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Home() {
     return (
     <section id="homePage">
         <div className="box">

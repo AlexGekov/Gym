@@ -1,7 +1,7 @@
 export default function Loggin() {
     return (
         <div className="wrapper">
-            <form action="">
+            <form action="POST">
                 <h1>Sign in</h1>
                 <div className="input-box">
                     <input className="input" type="text" placeholder="Username" required></input>

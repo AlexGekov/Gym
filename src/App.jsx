@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 
-import Header from "../components/Header"
-import Home from "../components/Home"
-import Register from "../components/Register"
-import Login from "../components/Login"
+import Header from "./components/Header/Header"
+import Home from "./components/Home"
+import Register from "./components/Register"
+import Login from "./components/Login"
 
 export default function App() {
 

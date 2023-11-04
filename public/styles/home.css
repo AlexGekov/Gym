@@ -5,7 +5,8 @@
 }
 
 .darkmode {
-    
+    background:  rgb(0, 0, 0);
+    transition: 0.3s;
 }
 
 section{
