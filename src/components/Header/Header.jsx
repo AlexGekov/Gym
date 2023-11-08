@@ -3,13 +3,13 @@ import { useEffect } from "react"
 export default function Header() {
 
     useEffect(()=>{
-        let darkMode = localStorage.setItem("darkMode", "null")
+        let darkMode = sessionStorage.setItem("darkMode", "null")
         const darkModeToggle = document.getElementsByClassName("switch")[0]
 
         const enableDarkMode = () => {
             let elements = document.getElementsByClassName("light")
             document.body.classList.add("darkmode")
-            localStorage.setItem("darkMode", "enabled")
+            sessionStorage.setItem("darkMode", "enabled")
             elements[0].classList.add("dark")
             document.getElementsByTagName("a")[0].classList.remove("light")
             elements[0].classList.add("dark")
@@ -27,7 +27,7 @@ export default function Header() {
         const disabledDarkMode = () => {
             let elements = document.getElementsByClassName("dark")
             document.body.classList.remove("darkmode")
-            localStorage.setItem("darkMode", "null")
+            sessionStorage.setItem("darkMode", "null")
             elements[0].classList.remove("dark")
             document.getElementsByTagName("a")[0].classList.add("light")
             elements[0].classList.remove("dark")
@@ -42,7 +42,7 @@ export default function Header() {
         }
 
         darkModeToggle.addEventListener("click", () => {
-            darkMode = localStorage.getItem("darkMode")
+            darkMode = sessionStorage.getItem("darkMode")
             if (darkMode !== "enabled") {
                 enableDarkMode()
             } else {

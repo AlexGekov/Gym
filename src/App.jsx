@@ -22,9 +22,9 @@ export default function App() {
 
   return (
     <>
-      <Header></Header>
-      <Home></Home>
-      {/* <Login></Login> */}
+      {/* <Header></Header>
+      <Home></Home> */}
+      <Login></Login>
       {/* <Register></Register> */}
     </>
   )

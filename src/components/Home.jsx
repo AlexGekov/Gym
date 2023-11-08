@@ -4,7 +4,7 @@ export default function Home() {
         <div className="box">
                 <div className="hidden">
                     <div className="light">
-                        <h1>Hello bodybuilders</h1>
+                        <h1>Hello, athletes!</h1>
                         <p>All the stuff you need is here!</p>
                     </div>
                 </div>
