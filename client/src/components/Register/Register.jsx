@@ -1,6 +1,7 @@
 import { useState } from "react"
 
-import RegValidate from "../../../api/userService"
+import { RegValidate } from "../../../api/userService"
+import { saveUserData } from "../../../api/sessionStorage"
 
 const InitialFormState = {
     username: "",
@@ -12,7 +13,6 @@ const InitialFormState = {
 export default function Register() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
-    const [err, seterr] = useState(undefined)
 
     const changeHandler = (e) => {
         setFormValues(state => ({
@@ -21,13 +21,16 @@ export default function Register() {
         }))
     }
 
-    const submitForm = () => {
-        RegValidate(InitialFormState, seterr)
+    const submitForm = async () => {
+        let res = RegValidate(formValues)
 
+        if( res instanceof Promise){
+            let data = await res.json()
+            console.log(data)
+            saveUserData(data)
+        }
 
-
-
-        setFormValues(InitialFormState)
+        // setFormValues(InitialFormState)
     }
 
 
@@ -43,7 +46,7 @@ export default function Register() {
                     type="text" 
                     placeholder="Username" 
                     value= {formValues.username}
-                        onChange={changeHandler}
+                    onChange={changeHandler}
                     required
                     ></input>
                 </div>
@@ -54,7 +57,7 @@ export default function Register() {
                     type="text" 
                     placeholder="Email" 
                     value={formValues.email}
-                        onChange={changeHandler}
+                    onChange={changeHandler}
                     required
                     ></input>
                 </div>
@@ -75,7 +78,7 @@ export default function Register() {
                     name="repeatPassword" 
                     type="password" 
                     placeholder="Repeat password" 
-                    value={formValues.repassword}
+                    value={formValues.repeatPassword}
                     onChange={changeHandler}
                     required
                     ></input>

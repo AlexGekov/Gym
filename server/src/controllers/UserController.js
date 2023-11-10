@@ -2,16 +2,17 @@ const router = require("express").Router()
 const userManager = require("../managers/userManager")
 
 router.post("/register", async (req, res) => {
-    const { email, usermame, password, repeatPassword } = req.body;
+    const { email, username, password, repeatPassword } = req.body;
     try {
-        console.log("here")
-        await userManager.register(email, usermame, password, repeatPassword)
-        const token = await userManager.login(email, password)
-        res.cookie("auth", token, { httpOnly: true })
-        res.redirect("/catalog")
+        let [user, token] = await userManager.register(email, username, password, repeatPassword)
+        res.json({
+            authToken: token,
+            email: user.email,
+            username: user.username,
+            userId: user._id
+        })
     } catch (error) {
-        let err = error.message
-        res.render("user/register", { err })
+        res.status(404)
     }
 })
 

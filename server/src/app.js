@@ -7,7 +7,7 @@ const PORT = 3030
 
 const expressConfig = require('./configs/expressConfig.js')
 const setCORS = require('./middlewares/corsMiddleware.js')
-const dbConnect = require('./configs/dbConfig.js')
+const dbConnect = require('./configs/DbConfig.js')
 
 dbConnect()
     .then(() => console.log('DB connected successfully'))

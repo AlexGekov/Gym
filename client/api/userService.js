@@ -1,44 +1,43 @@
-const URL = "http://localhost:3030/users"
-
 const passwordLength = 5
 const emailLength = 10
 const usernameLength = 6
 
-export default function RegValidate(Data, seterror){
+export function RegValidate(Data){
     if(Data.email.length <= emailLength){
-        return seterror(`Email should be at least ${emailLength} characters long`)
-    } else if (Data.username.length <= emailLength) {
-        return seterror(`Email should be at least ${usernameLength} characters long`)
-    }else if (Data.password.length < passwordLength) {
-        return seterror(`Username should be at least ${passwordLength} characters long`)
-    } else if (Data.repeatPassword !== password) {
-        return seterror(`Repeat-Password should match password!`)
-    } else {
-        seterror(undefined)
+        throw new Error(`Email should be at least ${emailLength} characters long`)
+    }
+    if (Data.username.length <= usernameLength) {
+        throw new Error(`Username should be at least ${usernameLength} characters long`)
+    }
+    if (Data.password.length < passwordLength) {
+        throw new Error(`Password should be at least ${passwordLength} characters long`)
+    }
+    if (Data.repeatPassword !== Data.password) {
+        throw new Error(`Repeat-Password should match password!`)
     }
 
-    return fetch(`${URL}`, {
+    let info = JSON.stringify(Data)
+
+    return fetch(`http://localhost:3030/users/register`, {
         method: "POST",
         headers: {"Content-type": "application/json"},
-        body: JSON.stringify(Data)
+        body: info
     })
 }
 
 
-export default function LogValidate(Data, seterror) {
+export function LogValidate(Data) {
     if (Data.email.length <= emailLength) {
-        return seterror(`Email should be at least ${emailLength} characters long`)
+        throw new Error(`Email should be at least ${emailLength} characters long`)
     } else if (Data.username.length <= emailLength) {
-        return seterror(`Email should be at least ${usernameLength} characters long`)
+        throw new Error(`Email should be at least ${usernameLength} characters long`)
     } else if (Data.password.length < passwordLength) {
-        return seterror(`Username should be at least ${passwordLength} characters long`)
+        throw new Error(`Username should be at least ${passwordLength} characters long`)
     } else if (Data.repeatPassword !== password) {
-        return seterror(`Repeat-Password should match password!`)
-    } else {
-        seterror(undefined)
+        throw new Error(`Repeat-Password should match password!`)
     }
 
-    return fetch(`${URL}`, {
+    return fetch(`http://localhost:3030/users/login`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(Data)
