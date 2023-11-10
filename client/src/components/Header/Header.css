@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+button {
+    color: #ffffff
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo {
+    size-adjust: 10px 10px;
+}
+
+.nav_links {
+    list-style: none;
+}
+
+.light{
+    transition: 0.3s ;
+    text-decoration: none;
+    color: #000000;
+}
+
+button {
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(0, 136, 169, 0.8);
+    font-size: larger;
+}
+
+.body {
+    background-color: #ffffff
+}
+
+.darkmode {
+    background: rgb(0, 0, 0);
+    transition: 0.3s ease;
+}
+
+.dark {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    min-height: 100vh;
+}
+
+.switch {
+    margin-bottom: 15px;
+    width: 60px;
+    height: 30px;
+    position: relative;
+    display: block;
+    background-color: #ebebeb;
+    border-radius: 200px;
+    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4), inset 0px -5px 15px rgba(225, 225, 255, 0.4);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.switch::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: linear-gradient(180deg, #ffcc89, #d8860b);
+    border-radius: 180px;
+    box-shadow: 0px 5px 10px;
+    transition: 0.3s;
+}
+
+.thingy {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.thingy:checked+.switch {
+    background: #000000;
+    color: #ffffff
+}
+
+.thingy:checked+.switch {
+    background: #242424;
+}
+
+.thingy:checked+.switch::after {
+    left: 55px;
+    transform: translateX(-100%);
+    background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+.switch:active:after {
+    width: 25px;
+}
+
+.toggle {
+    margin-left: 50%;
+}
