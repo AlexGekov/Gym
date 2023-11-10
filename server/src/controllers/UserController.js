@@ -16,19 +16,18 @@ router.post("/register", async (req, res) => {
     }
 })
 
-router.get("/login", (req, res) => {
-    res.render("user/login")
-})
-
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
-        const token = await userManager.login(email, password)
-        res.cookie("auth", token, { httpOnly: true })
-        res.redirect("/")
+        let [user, token] = await userManager.login(email, password)
+        res.json({
+            authToken: token,
+            email: user.email,
+            username: user.username,
+            userId: user._id
+        })
     } catch (error) {
-        let err = error.message
-        res.render("/login", err)
+        res.status(404)
     }
 })
 

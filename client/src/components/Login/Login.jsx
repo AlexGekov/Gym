@@ -1,11 +1,14 @@
 import { useState } from "react"
 
 const InitialFormState = {
-    username: "",
+    email: "",
     password: "",
 }
 
 import "./Login.css"
+import { LogValidate } from "../../../api/userService"
+import { saveUserData } from "../../../api/sessionStorage"
+
 
 export default function Loggin() {
 
@@ -19,28 +22,30 @@ export default function Loggin() {
         }))
     }
 
-    const submitForm = () => {
-        let a = RegValidate(InitialFormState, seterr)
-        if(res)
+    const submitForm = async () => {
+        let res = LogValidate(formValues)
 
-
-
+        if (res instanceof Promise) {
+            res = await res
+            let data = await res.json()
+            saveUserData(data)
+        }
 
         setFormValues(InitialFormState)
     }
 
     return (
         <div className="wrapper">
-            <form action="POST">
-                <h1>Sign in</h1>
-                <div className="light">
+            <div className="light">
+                <form action="POST">
+                    <h1>Sign in</h1>
                     <div className="input-box">
                         <input
                             className="input"
                             type="text"
-                            placeholder="Username"
-                            name="username"
-                            value={formValues.username}
+                            placeholder="Email"
+                            name="email"
+                            value={formValues.email}
                             onChange={changeHandler}
                             required
                         ></input>
@@ -66,8 +71,8 @@ export default function Loggin() {
                     <div className="register">
                         <p>Don't have an account?</p>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

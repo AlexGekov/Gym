@@ -1,3 +1,5 @@
+
+
 const passwordLength = 5
 const emailLength = 10
 const usernameLength = 6
@@ -27,15 +29,6 @@ export function RegValidate(Data){
 
 
 export function LogValidate(Data) {
-    if (Data.email.length <= emailLength) {
-        throw new Error(`Email should be at least ${emailLength} characters long`)
-    } else if (Data.username.length <= emailLength) {
-        throw new Error(`Email should be at least ${usernameLength} characters long`)
-    } else if (Data.password.length < passwordLength) {
-        throw new Error(`Username should be at least ${passwordLength} characters long`)
-    } else if (Data.repeatPassword !== password) {
-        throw new Error(`Repeat-Password should match password!`)
-    }
 
     return fetch(`http://localhost:3030/users/login`, {
         method: "POST",
