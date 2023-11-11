@@ -6,6 +6,7 @@ import Home from "./components/Home/Home.jsx"
 import Register from "./components/Register/Register.jsx"
 import Login from "./components/Login/Login.jsx"
 import CreateForm from "./components/Create/Create.jsx"
+import Catalog from "./components/Catalog/Catalog.jsx"
 
 export default function App() {
 
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<CreateForm />}></Route>
+        <Route path="/catalog" element={<Catalog />}></Route>
       </Routes>
     </>
   )

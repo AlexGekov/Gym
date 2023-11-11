@@ -3,15 +3,15 @@ import { Create } from "../../../api/postService"
 
 const InitialFormState = {
     kind: "",
-    name: "",   
+    name: "",
     manufacturer: "",
     description: "",
     image: "",
 }
 
-import "./Create.css"
+import "./Delete.css"
 
-export default function CreateForm() {
+export default function DeleteForm() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
 
@@ -23,7 +23,7 @@ export default function CreateForm() {
     }
 
     const submitForm = async () => {
-        let res = Create(formValues)
+        let res = Delete(formValues)
 
         if (res instanceof Promise) {
             res = await res

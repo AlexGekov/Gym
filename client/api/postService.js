@@ -21,8 +21,46 @@ export function Create(Data) {
 }
 
 
+export function Edit(Data) {
+    Validate(Data)
 
+    let Token = sessionStorage.getItem("auth")
 
+    if (!Token) {
+        throw new Error("You need to be logged in!")
+    }
+
+    let info = JSON.stringify(Data)
+
+    console.log(info)
+
+    return fetch(`http://localhost:3030/posts/`, {
+        method: "POST",
+        headers:
+        {
+            "Content-type": "application/json",
+            "X-Authorization": Token
+        },
+        body: info
+    })
+}
+
+export function Delete(Data) {
+    let Token = sessionStorage.getItem("auth")
+
+    if (!Token) {
+        throw new Error("You need to be logged in!")
+    }
+    
+    return fetch(`http://localhost:3030/users/login`, {
+        method: "DELETE",
+        headers: 
+        {
+            "Content-type": "application/json",
+            "X-Authorization": Token
+        },
+    })
+}
 
 function Validate(Data) {
     const kindLength = 5
@@ -42,7 +80,7 @@ function Validate(Data) {
     if (Data.description.length < descriptionLength) {
         throw new Error(`Description should be at least ${descriptionLength} characters long`)
     }
-    if (!Data.image.startsWith("https://") && !Data.image.startsWith("http://")){
+    if (!Data.image.startsWith("https://") && !Data.image.startsWith("http://")) {
         throw new Error(`Image should start with "https://" or ""http://"`)
     }
 }

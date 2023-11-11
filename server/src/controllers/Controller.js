@@ -1,9 +1,19 @@
 const router = require("express").Router()
 const Manager = require("../managers/Manager")
 
+router.get("/catalog", async (req,res) => {
+    try{
+        let posts = await Manager.GetAll()
+        res.json(posts)
+    }catch(err){
+        res.status(404)
+    }
+})
+
 router.post("/create", async (req, res) => {
-    const userId = sessionStorage.getItem("userId")
     const { kind, name, manufacturer, description, image } = req.body
+    const userId = req.user
+    console.log(userId)
     try{
         await Manager.create({ kind, name, manufacturer, description, image, owner: userId })
     }catch(err){
