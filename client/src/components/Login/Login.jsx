@@ -8,6 +8,7 @@ const InitialFormState = {
 import "./Login.css"
 import { LogValidate } from "../../../api/userService"
 import { saveUserData } from "../../../api/sessionStorage"
+import { Navigate } from "react-router-dom"
 
 
 export default function Loggin() {
@@ -29,9 +30,7 @@ export default function Loggin() {
             res = await res
             let data = await res.json()
             saveUserData(data)
-v
         }
-
         setFormValues(InitialFormState)
     }
 

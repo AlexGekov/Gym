@@ -1,11 +1,16 @@
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
+import Links from "./Links"
 
 import "./Header.css"
 
-export default function Header() {
+export default function Header({isAuth, setIsAuth}) {
 
-    useEffect(()=>{
+    useEffect(() => {
+        let token = sessionStorage.getItem("auth")
+        token ? setIsAuth(true) : setIsAuth(false)
+    },[isAuth])
+
+    useEffect(() => {
         let darkMode = sessionStorage.setItem("darkMode", "null")
         const darkModeToggle = document.getElementsByClassName("switch")[0]
 
@@ -18,7 +23,7 @@ export default function Header() {
             elements[0].classList.add("dark")
             document.getElementsByTagName("a")[1].classList.remove("light")
             elements[0].classList.add("dark")
-            if (document.getElementsByClassName("hidden")[0]){
+            if (document.getElementsByClassName("hidden")[0]) {
                 document.getElementsByClassName("hidden")[0].children[0].classList.remove("light")
                 elements[0].classList.add("dark")
                 document.getElementsByClassName("hidden")[1].children[0].classList.remove("light")
@@ -60,12 +65,9 @@ export default function Header() {
     return (
         <header id="header">
             <img className="img" src="/images/429d631659a11a9eb666b103d811470a.png" alt="logo"></img>
-                <nav id="navbar">
-                <ul className="nav_links">
-                    <li><Link to="/login" className="light" >Sign in</Link></li>
-                    <li><Link to="/register" className="light" >Register</Link></li>
-                </ul>
-                </nav>
+            <nav id="navbar">
+            <Links isAuth={isAuth} setIsAuth={setIsAuth}></Links>
+            </nav>
             <div className="toggle">
                 <input className="thingy" type="checkbox" id="lightmode-toggle"></input>
                 <label className="switch" htmlFor="lightmode-toggle"></label>

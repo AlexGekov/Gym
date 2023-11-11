@@ -10,19 +10,7 @@ export default function Catalog() {
     let [posts, setPosts] = useState(undefined)
 
     useEffect(() => {
-        //     const observer = new IntersectionObserver((entries) => {
-        //         entries.forEach((entry) => {
-        //             if (entry.isIntersecting) {
-        //                 entry.target.classList.add("show")
-        //             }
-        //         })
-        //     })
-
-        //     const hiddenEls = document.querySelectorAll('.hidden')
-        //     hiddenEls.forEach((el) => observer.observe(el))
-
-
-        fetch(`http://localhost:3030/posts/catalog`)
+    fetch(`http://localhost:3030/posts/catalog`)
         .then(res => res.json())
         .then(data => setPosts(Object.values(data)))
 
