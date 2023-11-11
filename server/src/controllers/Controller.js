@@ -1,6 +1,16 @@
 const router = require("express").Router()
 const Manager = require("../managers/Manager")
 
+router.post("/create", async (req, res) => {
+    const userId = sessionStorage.getItem("userId")
+    const { kind, name, manufacturer, description, image } = req.body
+    try{
+        await Manager.create({ kind, name, manufacturer, description, image, owner: userId })
+    }catch(err){
+        res.status(404)
+    }
+})
+
 router.get("/:animalId/details", async (req, res) => {
     const animalId = req.params.animalId
     const animal = await Manager.Find(animalId)
@@ -35,7 +45,7 @@ router.get("/post/edit", async (req, res) => {
 router.post("/:animalId/edit", async (req, res) => {
     const animalId = req.params.animalId
     const { need, name, years, image, kind, location, description } = req.body
-    try{
+    try {
         await Manager.Edit(animalId, { need, name, years, image, kind, location, description })
     } catch (error) {
         let err = error.message

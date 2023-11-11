@@ -5,6 +5,6 @@ const Controller = require('./controllers/Controller')
 
 // router.use(HomeController)
 router.use('/users', UserController)
-router.use('/data', Controller)
+router.use('/posts', Controller)
 
 module.exports = router

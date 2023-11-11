@@ -5,7 +5,7 @@ import Header from "./components/Header/Header.jsx"
 import Home from "./components/Home/Home.jsx"
 import Register from "./components/Register/Register.jsx"
 import Login from "./components/Login/Login.jsx"
-import Create from "./components/Create/Create.jsx"
+import CreateForm from "./components/Create/Create.jsx"
 
 export default function App() {
 
@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/create" element={<Create />}></Route>
+        <Route path="/create" element={<CreateForm />}></Route>
       </Routes>
     </>
   )

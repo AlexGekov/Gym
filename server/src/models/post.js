@@ -1,16 +1,12 @@
 const mongoose = require("mongoose")
 
-const animalSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
     },
-    years: {
-        type: String,
-        required: true
-    },
     kind: {
-        type: Number,
+        type: String,
         required: true
     },
     description: {
@@ -21,28 +17,16 @@ const animalSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    need: {
-        type: String,
-        required: true
-    }, 
-    location: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
     owner: {
         type: mongoose.Types.ObjectId,
         ref: "User",
     },
-    donations: [{
+    Want: [{
         type: mongoose.Types.ObjectId,
         ref: "User"
     }],
 })
 
-const animal = mongoose.model("Animal", animalSchema)
+const post = mongoose.model("Post", postSchema)
 
-module.exports = animal
+module.exports = post

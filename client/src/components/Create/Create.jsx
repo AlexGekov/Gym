@@ -1,15 +1,18 @@
+import { useState } from "react"
+import { Create } from "../../../api/postService"
+
 const InitialFormState = {
-    type: "",
+    kind: "",
     name: "",
     manufacturer: "",
     description: "",
-    repeatPassword: ""
+    image: "",
 }
 
 
 import "./Create.css"
 
-export default function Create() {
+export default function CreateForm() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
 
@@ -21,7 +24,14 @@ export default function Create() {
     }
 
     const submitForm = async () => {
+        let res = Create(formValues)
 
+        if (res instanceof Promise) {
+            res = await res
+            let data = await res.json()
+            console.log(data)
+            saveUserData(data)
+        }
 
         // setFormValues(InitialFormState)
     }
@@ -36,10 +46,10 @@ export default function Create() {
                     <div className="input-box">
                         <input
                             className="input"
-                            name="type"
+                            name="kind"
                             type="text"
-                            placeholder="Type"
-                            value={formValues.type}
+                            placeholder="Kind"
+                            value={formValues.kind}
                             onChange={changeHandler}
                             required
                         ></input>
@@ -77,8 +87,19 @@ export default function Create() {
                             required
                         ></input>
                     </div>
+                    <div className="input-box">
+                        <input
+                            className="image"
+                            name="image"
+                            type="text"
+                            placeholder="Image"
+                            value={formValues.image}
+                            onChange={changeHandler}
+                            required
+                        ></input>
+                    </div>
                     <div className="btndiv">
-                        <button type="button" className="btn" onClick={submitForm} >Register</button>
+                        <button type="button" className="btn" onClick={submitForm} >Create!</button>
                     </div>
                 </form>
             </div>
