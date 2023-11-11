@@ -45,13 +45,13 @@ export function Edit(Data) {
     })
 }
 
-export function Delete(Data) {
+export function Delete() {
     let Token = sessionStorage.getItem("auth")
 
     if (!Token) {
         throw new Error("You need to be logged in!")
     }
-    
+
     return fetch(`http://localhost:3030/users/login`, {
         method: "DELETE",
         headers: 

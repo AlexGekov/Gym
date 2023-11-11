@@ -30,6 +30,7 @@ export default function Register() {
             let data = await res.json()
             console.log(data)
             saveUserData(data)
+            navigate('/catalog')
         }
 
         setFormValues(InitialFormState)

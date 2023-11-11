@@ -4,7 +4,7 @@ const Manager = require("../managers/Manager")
 router.get("/catalog", async (req,res) => {
     try{
         let posts = await Manager.GetAll()
-        res.json(posts)
+        res.json(posts).end()
     }catch(err){
         res.status(404)
     }

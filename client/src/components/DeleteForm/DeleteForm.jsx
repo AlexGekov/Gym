@@ -23,13 +23,14 @@ export default function DeleteForm() {
     }
 
     const submitForm = async () => {
-        let res = Delete(formValues)
+        let res = Delete()
 
         if (res instanceof Promise) {
             res = await res
             let data = await res.json()
             console.log(data)
             saveUserData(data)
+            navigator
         }
 
         // setFormValues(InitialFormState)

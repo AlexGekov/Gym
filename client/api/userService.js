@@ -5,31 +5,6 @@ const emailLength = 10
 const usernameLength = 6
 
 export function RegValidate(Data){
-    Validate(Data)
-
-    let info = JSON.stringify(Data)
-
-    return fetch(`http://localhost:3030/users/register`, {
-        method: "POST",
-        headers: {"Content-type": "application/json"},
-        body: info
-    })
-}
-
-
-export function LogValidate(Data) {
-    Validate(Data)
-
-    let info = JSON.stringify(Data)
-
-    return fetch(`http://localhost:3030/users/login`, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: info
-    })
-}
-
-function Validate(Data){
     if (Data.email.length <= emailLength) {
         throw new Error(`Email should be at least ${emailLength} characters long`)
     }
@@ -42,4 +17,23 @@ function Validate(Data){
     if (Data.repeatPassword !== Data.password) {
         throw new Error(`Repeat-Password should match password!`)
     }
+
+    let info = JSON.stringify(Data)
+
+    return fetch(`http://localhost:3030/users/register`, {
+        method: "POST",
+        headers: {"Content-type": "application/json"},
+        body: info
+    })
+}
+
+
+export function LogValidate(Data) {
+    let info = JSON.stringify(Data)
+
+    return fetch(`http://localhost:3030/users/login`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: info
+    })
 }
