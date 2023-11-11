@@ -26,7 +26,7 @@ router.get("/:animalId/details", async (req, res) => {
 })
 
 
-router.get("/:animalId/edit", async (req, res) => {
+router.get("/post/edit", async (req, res) => {
     const animalId = req.params.animalId
     const animal = await Manager.Find(animalId)
     res.render("edit", { animal })

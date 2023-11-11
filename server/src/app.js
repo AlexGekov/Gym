@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = require('./routes.js')
+const {auth} = require("./middlewares/authenticate.js")
 
 const app = express()
 
@@ -16,5 +17,6 @@ expressConfig(app)
 setCORS(app)
 
 app.use(routes)
+app.use(auth)
 
 app.listen(PORT, () => console.log(`REST server is listening on port: ${PORT}`))

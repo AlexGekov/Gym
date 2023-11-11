@@ -13,8 +13,9 @@ exports.auth = async (req, res, next) => {
             res.locals.isAuthenticated = true
             next()
         }catch(err){
-            res.clearCookies('auth')
-            res.redirect("/users/login")
+            res.status(401).json({
+                message: "you are not authorized!"
+            })
         }
     }else{
         next()

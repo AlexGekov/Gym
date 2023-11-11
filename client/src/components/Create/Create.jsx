@@ -1,17 +1,15 @@
-import { useState } from "react"
-
-import { RegValidate } from "../../../api/userService"
-import { saveUserData } from "../../../api/sessionStorage"
-import "./Register.css"
-
 const InitialFormState = {
-    username: "",
-    email: "",
-    password: "",
-    repeatPassword: "" 
+    type: "",
+    name: "",
+    manufacturer: "",
+    description: "",
+    repeatPassword: ""
 }
 
-export default function Register() {
+
+import "./Create.css"
+
+export default function Create() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
 
@@ -23,16 +21,9 @@ export default function Register() {
     }
 
     const submitForm = async () => {
-        let res = RegValidate(formValues)
 
-        if( res instanceof Promise){
-            res = await res
-            let data = await res.json()
-            console.log(data)
-            saveUserData(data)
-        }
 
-        setFormValues(InitialFormState)
+        // setFormValues(InitialFormState)
     }
 
 
@@ -41,14 +32,14 @@ export default function Register() {
         <div className="wrapper">
             <div className="light">
                 <form action="POST">
-                    <h1>Register</h1>
+                    <h1>Create Post</h1>
                     <div className="input-box">
                         <input
                             className="input"
-                            name="username"
+                            name="type"
                             type="text"
-                            placeholder="Username"
-                            value={formValues.username}
+                            placeholder="Type"
+                            value={formValues.type}
                             onChange={changeHandler}
                             required
                         ></input>
@@ -56,10 +47,10 @@ export default function Register() {
                     <div className="input-box">
                         <input
                             className="input"
-                            name="email"
+                            name="name"
                             type="text"
-                            placeholder="Email"
-                            value={formValues.email}
+                            placeholder="Name"
+                            value={formValues.name}
                             onChange={changeHandler}
                             required
                         ></input>
@@ -67,10 +58,10 @@ export default function Register() {
                     <div className="input-box">
                         <input
                             className="input"
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            value={formValues.password}
+                            name="manufacturer"
+                            type="text"
+                            placeholder="Manufacturer"
+                            value={formValues.manufacturer}
                             onChange={changeHandler}
                             required
                         ></input>
@@ -78,10 +69,10 @@ export default function Register() {
                     <div className="input-box">
                         <input
                             className="input"
-                            name="repeatPassword"
-                            type="password"
-                            placeholder="Repeat password"
-                            value={formValues.repeatPassword}
+                            name="description"
+                            type="text"
+                            placeholder="Description"
+                            value={formValues.description}
                             onChange={changeHandler}
                             required
                         ></input>
