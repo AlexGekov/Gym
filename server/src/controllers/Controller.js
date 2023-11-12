@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const Manager = require("../managers/Manager")
 
-router.get("/catalog", async (req,res) => {
+router.get("/catalog", async (req, res) => {
     try{
         let posts = await Manager.GetAll()
         res.json(posts).end()
@@ -11,64 +11,48 @@ router.get("/catalog", async (req,res) => {
 })
 
 router.post("/create", async (req, res) => {
-    const { kind, name, manufacturer, description, image } = req.body
-    const userId = req.user
-    console.log(userId)
+    const { kind, name, manufacturer, description, image, owner } = req.body
     try{
-        await Manager.create({ kind, name, manufacturer, description, image, owner: userId })
+        await Manager.create({ kind, name, manufacturer, description, image, owner})
     }catch(err){
         res.status(404)
     }
 })
 
-router.get("/:animalId/details", async (req, res) => {
-    const animalId = req.params.animalId
-    const animal = await Manager.Find(animalId)
-    let isOwner = false
-    let isLogged = false
-
-    if (req.user) {
-        isLogged = true
-
-        if (req.user._id == animal.owner) {
-            isOwner = true
-        }
-
-        // for (let person of creature.votes) {
-        //     peopleWhoHaveVoted.push(person.email)
-        //     if (person._id == req.user._id) {
-        //         hasVoted = true
-        //     }
-        // }
+router.get("/:postId/details", async (req, res) => {
+    const postId = req.params.postId
+    try{
+        const post = await Manager.Find(postId)
+        res.json(post).end()
+    } catch (err) {
+        res.status(404)
     }
-
-    res.render("details", { animal, isOwner, })
 })
 
 
-router.get("/post/edit", async (req, res) => {
-    const animalId = req.params.animalId
-    const animal = await Manager.Find(animalId)
-    res.render("edit", { animal })
-})
+// router.get("/:postId/edit", async (req, res) => {
+//     const animalId = req.params.animalId
+//     const animal = await Manager.Find(animalId)
+//     res.render("edit", { animal })
+// })
 
-router.post("/:animalId/edit", async (req, res) => {
-    const animalId = req.params.animalId
-    const { need, name, years, image, kind, location, description } = req.body
-    try {
-        await Manager.Edit(animalId, { need, name, years, image, kind, location, description })
-    } catch (error) {
-        let err = error.message
-        res.render("edit", { err })
-    }
-    res.redirect(`/animals/${animalId}/details`)
-})
+// router.post("/:postId/edit", async (req, res) => {
+//     const animalId = req.params.animalId
+//     const { need, name, years, image, kind, location, description } = req.body
+//     try {
+//         await Manager.Edit(animalId, { need, name, years, image, kind, location, description })
+//     } catch (error) {
+//         let err = error.message
+//         res.render("edit", { err })
+//     }
+//     res.redirect(`/animals/${animalId}/details`)
+// })
 
-router.get("/:animalId/delete", async (req, res) => {
-    const animalId = req.params.animalId
-    await creatureManager.Delete(animalId)
-    res.redirect("/dashboard")
-})
+// router.get("/:animalId/delete", async (req, res) => {
+//     const animalId = req.params.animalId
+//     await creatureManager.Delete(animalId)
+//     res.redirect("/dashboard")
+// })
 
 
 module.exports = router

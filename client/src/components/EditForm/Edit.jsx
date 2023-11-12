@@ -9,7 +9,7 @@ const InitialFormState = {
     image: "",
 }
 
-import "./Create.css"
+import "./Edit.css"
 
 export default function EditForm() {
 

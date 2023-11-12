@@ -119,3 +119,7 @@ section {
 .toggle {
     margin-left: 50%;
 }
+
+.logout:hover {
+    cursor: pointer;
+}

@@ -7,6 +7,8 @@ export function Create(Data) {
         throw new Error("You need to be logged in!")
     }
 
+    Data.owner = sessionStorage.getItem("userId")
+
     let info = JSON.stringify(Data)
 
     return fetch(`http://localhost:3030/posts/create`, {

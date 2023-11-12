@@ -19,7 +19,7 @@ export default function Links({ isAuth, setIsAuth }) {
             <ul className="nav_links">
                 <li><Link to="/catalog" className="light" >Catalog</Link></li>
                 <li><Link to="/create" className="light" >Create</Link></li>
-                <li><a onClick={logout}>Logout</a></li>
+                <li><a className="logout"onClick={logout}>Logout</a></li>
             </ul >
             :
             <ul className="nav_links">

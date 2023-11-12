@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Link } from "react-router-dom"
 
 
 import "./Catalog.css"
@@ -10,11 +10,27 @@ export default function Catalog() {
     let [posts, setPosts] = useState(undefined)
 
     useEffect(() => {
-    fetch(`http://localhost:3030/posts/catalog`)
-        .then(res => res.json())
-        .then(data => setPosts(Object.values(data)))
+        async function FetchData () {
+            await fetch(`http://localhost:3030/posts/catalog`)
+            .then(res => res.json())
+            .then(data => setPosts(Object.values(data)))
+        }
+        FetchData()
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show")
+                }
+            })
+        })
+
+        const hiddenEls = document.querySelectorAll('.hidden')
+        hiddenEls.forEach((el) => observer.observe(el))
 
     }, [])
+
+
 
     return (
         <section id="homePage">
@@ -28,6 +44,7 @@ export default function Catalog() {
                                     <img className="image" src={post.image}></img>
                                     <p>{post.name}</p>
                                     <a></a>
+                                    <Link to={"/posts/" +  post._id + "/details"} ><button className="btn"> Details</button></Link>
                                 </div>
                             ))
                             :

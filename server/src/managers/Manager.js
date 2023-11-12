@@ -2,7 +2,7 @@ const post = require("../models/post")
 
 exports.GetAll = () => post.find().lean()
 
-exports.Find = (Id) => post.findById(Id).populate("votes").lean()
+exports.Find = (Id) => post.findById(Id).lean()
 
 exports.create = async (Data) => {
     const kindLength = 5
