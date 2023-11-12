@@ -10,7 +10,7 @@ export default function Details({ isAuth }) {
     let [postDetails, setPostDetails] = useState(undefined)
     let [wants, setWants] = useState(undefined)
     let [wantsLength, setWantsLength] = useState(undefined)
-    
+
     let { postId } = useParams()
     let navigate = useNavigate()
     let userId = sessionStorage.getItem("userId")

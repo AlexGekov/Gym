@@ -21,7 +21,9 @@ exports.register = async (email, username, password, repeatPassword) => {
         throw new Error(`Repeat-Password should match password!`)
     }
 
-    let user = User.create({ username, email, password })
+    let user = await User.create({ username, email, password })
+
+    console.log(user)
 
     const payload = {
         _id: user._id,

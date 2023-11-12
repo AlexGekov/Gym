@@ -37,8 +37,6 @@ export default function Register() {
         setFormValues(InitialFormState)
     }
 
-
-
     return (
         <div className="wrapper">
             <div className="light">
