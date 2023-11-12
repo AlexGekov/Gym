@@ -10,6 +10,17 @@ router.get("/catalog", async (req, res) => {
     }
 })
 
+
+router.get("/catalog/:search", async (req, res) => {
+    let search = req.params.search
+    try {
+        let posts = await Manager.search(search)
+        res.json(posts).end()
+    } catch (err) {
+        res.status(404)
+    }
+})
+
 router.post("/create", async (req, res) => {
     const { kind, name, manufacturer, description, image, owner } = req.body
     try {

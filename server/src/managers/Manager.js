@@ -29,6 +29,12 @@ exports.create = async (Data) => {
     await post.create(Data)
 }
 
+exports.search = async (Param) => {
+    let result = await post.find().lean()
+    result = result.filter(post => post.name.toLowerCase().includes(Param.toLowerCase()))
+    return result
+}
+
 exports.Delete = (Id) => post.findByIdAndDelete(Id)
 
 exports.Edit = (Id, Data) => post.findByIdAndUpdate(Id, Data)

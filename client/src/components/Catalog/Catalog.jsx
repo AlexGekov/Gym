@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react"
-import { Route, Routes, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 import "./Catalog.css"
 
+const InitialFormState = {
+    search: "",
+}
+
 
 export default function Catalog() {
     
-    let [posts, setPosts] = useState(undefined)
+    const [formValues, setFormValues] = useState(InitialFormState)
+    const [posts, setPosts] = useState(undefined)
 
     useEffect(() => {
         async function FetchData () {
@@ -17,23 +22,45 @@ export default function Catalog() {
         }
         FetchData()
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show")
-                }
-            })
-        })
+        // const observer = new IntersectionObserver((entries) => {
+        //     entries.forEach((entry) => {
+        //         if (entry.isIntersecting) {
+        //             entry.target.classList.add("show")
+        //         }
+        //     })
+        // })
 
-        const hiddenEls = document.querySelectorAll('.hidden')
-        hiddenEls.forEach((el) => observer.observe(el))
+        // const hiddenEls = document.querySelectorAll('.hidden')
+        // hiddenEls.forEach((el) => observer.observe(el))
 
     }, [])
 
 
+    const changeHandler = (e) => {
+        setFormValues(state => ({
+            ...state,
+            [e.target.name]: e.target.value,
+        }))
+    }
+
+    function SearchHandler(){
+        fetch(`http://localhost:3030/posts/catalog/${formValues.search}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.length > 0 ){
+                setPosts(Object.values(data))
+            }else{
+                setPosts(undefined)
+            }
+        })
+    }
 
     return (
         <section id="homePage">
+            <div className="searchbox">
+                <input className="search" type="text" name="search" placeholder="Search..." value={formValues.search} onChange={changeHandler}></input>
+                <button className="searchBtn" onClick={SearchHandler}>Search</button>
+            </div>
             <div className="box">
                 <div className="hidden">
                     <div className="light">
@@ -44,13 +71,11 @@ export default function Catalog() {
                                     <img className="image" src={post.image}></img>
                                     <p>{post.name}</p>
                                     <a></a>
-                                    <Link to={"/posts/" +  post._id + "/details"} ><button className="btn"> Details</button></Link>
+                                    <Link to={"/posts/" +  post._id + "/details"} ><button className="detailsBtn"> Details</button></Link>
                                 </div>
                             ))
                             :
-                            <div>
-                                <h1>No posts yet!</h1>
-                            </div>
+                            <h1>No posts yet!</h1>
                         }
                     </div>
                 </div>

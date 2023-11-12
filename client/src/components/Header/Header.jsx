@@ -9,7 +9,7 @@ export default function Header({isAuth, setIsAuth}) {
     useEffect(() => {
         let token = sessionStorage.getItem("auth")
         token ? setIsAuth(true) : setIsAuth(false)
-    },[isAuth])
+    },[])
 
     useEffect(() => {
         let darkMode = sessionStorage.setItem("darkMode", "null")
