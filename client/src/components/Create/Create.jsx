@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Create } from "../../../api/postService"
 
 const InitialFormState = {
@@ -14,6 +15,7 @@ import "./Create.css"
 export default function CreateForm() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
+    let navigate = useNavigate()
 
     const changeHandler = (e) => {
         setFormValues(state => ({
@@ -32,7 +34,8 @@ export default function CreateForm() {
             saveUserData(data)
         }
 
-        // setFormValues(InitialFormState)
+        navigate("/catalog")
+        setFormValues(InitialFormState)
     }
 
     return (

@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useParams,useNavigate } from "react-router-dom"
 import { Edit } from "../../../api/postService"
 
 const InitialFormState = {
@@ -14,6 +15,16 @@ import "./Edit.css"
 export default function EditForm() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
+    let { postId } = useParams()
+    let navigate = useNavigate()
+
+    useEffect(()=>{
+        fetch(`http://localhost:3030/posts/${postId}/details`)
+            .then(res => res.json())
+            .then(data => {
+                setFormValues(data)
+            })
+    },[])
 
     const changeHandler = (e) => {
         setFormValues(state => ({
@@ -28,11 +39,9 @@ export default function EditForm() {
         if (res instanceof Promise) {
             res = await res
             let data = await res.json()
-            console.log(data)
-            saveUserData(data)
         }
 
-        // setFormValues(InitialFormState)
+        navigate("/catalog")
     }
 
     return (
@@ -96,7 +105,7 @@ export default function EditForm() {
                         ></input>
                     </div>
                     <div className="btndiv">
-                        <button type="button" className="btn" onClick={submitForm} >Create!</button>
+                        <button type="button" className="btn" onClick={submitForm} >Edit!</button>
                     </div>
                 </form>
             </div>

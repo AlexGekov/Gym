@@ -15,6 +15,7 @@ export default function Loggin() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     const [err, seterr] = useState(undefined)
+    let navigate = useNavigate()
 
     const changeHandler = (e) => {
         setFormValues(state => ({
@@ -32,6 +33,7 @@ export default function Loggin() {
             saveUserData(data)
         }
         
+        navigate("/catalog")
         setFormValues(InitialFormState)
     }
 

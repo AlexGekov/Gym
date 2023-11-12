@@ -30,11 +30,27 @@ router.get("/:postId/details", async (req, res) => {
 })
 
 
-// router.get("/:postId/edit", async (req, res) => {
-//     const animalId = req.params.animalId
-//     const animal = await Manager.Find(animalId)
-//     res.render("edit", { animal })
-// })
+router.delete("/:postId/details", async (req, res) => {
+    const postId = req.params.postId
+    try {
+        const post = await Manager.Delete(postId)
+        res.json(post).end()
+    } catch (err) {
+        res.status(404)
+    }
+})
+
+
+router.put("/:postId/edit", async (req, res) => {
+    const postId = req.params.postId
+    const { kind, name, manufacturer, description, image, } = req.body
+    try{
+        const post = await Manager.Edit(postId, { kind, name, manufacturer, description, image})
+        res.json(post).end()
+    }catch(err){
+        res.status(404)
+    }
+})
 
 // router.post("/:postId/edit", async (req, res) => {
 //     const animalId = req.params.animalId

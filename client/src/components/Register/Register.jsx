@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { RegValidate } from "../../../api/userService"
 import { saveUserData } from "../../../api/sessionStorage"
@@ -14,6 +15,7 @@ const InitialFormState = {
 export default function Register() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
+    let navigate = useNavigate()
 
     const changeHandler = (e) => {
         setFormValues(state => ({
@@ -30,9 +32,9 @@ export default function Register() {
             let data = await res.json()
             console.log(data)
             saveUserData(data)
-            navigate('/catalog')
         }
 
+        navigate("/catalog")
         setFormValues(InitialFormState)
     }
 

@@ -36,8 +36,8 @@ export function Edit(Data) {
 
     console.log(info)
 
-    return fetch(`http://localhost:3030/posts/`, {
-        method: "POST",
+    return fetch(`http://localhost:3030/posts/${Data._id}/edit`, {
+        method: "PUT",
         headers:
         {
             "Content-type": "application/json",
