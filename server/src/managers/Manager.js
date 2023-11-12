@@ -23,7 +23,7 @@ exports.create = async (Data) => {
         throw new Error(`Description should be at least ${descriptionLength} characters long`)
     }
     if (!Data.image.startsWith("https://") && !Data.image.startsWith("http://")) {
-        throw new Error(`Image should start with "https://" or ""http://"`)
+        throw new Error(`Image should start with "https://" or "http://"`)
     }
 
     await post.create(Data)
@@ -33,8 +33,9 @@ exports.Delete = (Id) => post.findByIdAndDelete(Id)
 
 exports.Edit = (Id, Data) => post.findByIdAndUpdate(Id, Data)
 
-// exports.Like = async (creatureId, userId) => {
-//     const currcreature = await post.findById(creatureId)
-//     currcreature.votes.push(userId)
-//     return currcreature.save()
-// }
+exports.Want = async (Id, userId) => {
+    const curPost = await post.findById(Id)
+    curPost.Want.push(userId)
+    return curPost.save()
+}
+

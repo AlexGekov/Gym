@@ -4,7 +4,6 @@ const jwt = require("../lib/jwt")
 const { SECRET } = require("../configs/SuperSecret")
 
 exports.register = async (email, username, password, repeatPassword) => {
-
     const passwordLength = 5
     const emailLength = 10
     const usernameLength = 6
@@ -22,9 +21,7 @@ exports.register = async (email, username, password, repeatPassword) => {
         throw new Error(`Repeat-Password should match password!`)
     }
 
-    User.create({ username, email, password })
-
-    const user = await User.findOne({ email })
+    let user = User.create({ username, email, password })
 
     const payload = {
         _id: user._id,
@@ -32,7 +29,7 @@ exports.register = async (email, username, password, repeatPassword) => {
         username: user.username,
     }
 
-    const token = await jwt.sign(payload, SECRET, { expiresIn: "2d" });
+    const token = await jwt.sign(payload, SECRET);
 
     return [payload, token]
 
@@ -57,7 +54,7 @@ exports.login = async (email, password) => {
         username: user.username,
     }
 
-    const token = await jwt.sign(payload, SECRET, { expiresIn: "2d" });
+    const token = await jwt.sign(payload, SECRET);
 
     return [payload, token]
 }

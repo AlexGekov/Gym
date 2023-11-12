@@ -8,16 +8,25 @@ import "./Details.css"
 export default function Details({ isAuth }) {
 
     let [postDetails, setPostDetails] = useState(undefined)
+    let [wants, setWants] = useState(undefined)
+    let [wantsLength, setWantsLength] = useState(undefined)
+    
     let { postId } = useParams()
     let navigate = useNavigate()
+    let userId = sessionStorage.getItem("userId")
 
     useEffect(() => {
         fetch(`http://localhost:3030/posts/${postId}/details`)
-            .then(res => res.json())
-            .then(data => {
-                setPostDetails(data)
-            })
-
+        .then(res => res.json())
+        .then(data => {
+            if (data.Want){
+                setWantsLength(data.Want.length)
+                if (data.Want.includes(userId)) {
+                    setWants(true)
+                }
+            }
+            setPostDetails(data)
+        })
     }, [])
 
     function Delete() {
@@ -32,9 +41,24 @@ export default function Details({ isAuth }) {
     }
 
     function Want(){
+        let Token = sessionStorage.getItem("auth")
+        let Data = {
+            userId: sessionStorage.getItem("userId"),
+            postId
+        }
 
+        fetch(`http://localhost:3030/posts/${postId}/want`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "X-Authorization": Token
+            },
+            body: JSON.stringify(Data)
+        })
+
+        setWants(true)
     }
-    
+
     return (
         <div>
             {postDetails
@@ -56,24 +80,28 @@ export default function Details({ isAuth }) {
                                     <div className="small">
                                         <Link to={"/posts/" + postDetails._id + "/edit"} ><button className="editBtn">Edit</button></Link>
                                     </div>
-                                    <div className="small">
-                                        <button onClick={Want} className="wantBtn">Want</button>
-                                    </div>
                                 </div>
                                 :
                                 <div>
-                                    <div className="small">
-                                        <button className="wantBtn">Want</button>
-                                    </div>
+                                    {wants
+                                        ?
+                                        <div>
+                                            <p>You already want this item!</p>
+                                        </div>
+                                        :
+                                        <div className="small">
+                                            <button onClick={Want} className="wantBtn">Want</button>
+                                        </div>
+                                    }
                                 </div>
                             }
                             <div>
-                                <p>Wants: 0</p>
+                                <h2>Wants: {wantsLength}</h2>
                             </div>
                         </div>
                         :
                         <div>
-                            <p>Wants: 0</p>
+                            <h2>Wants: {wantsLength}</h2>
                         </div>
                     }
                 </div>

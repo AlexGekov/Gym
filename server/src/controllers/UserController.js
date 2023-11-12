@@ -4,6 +4,7 @@ const userManager = require("../managers/userManager")
 router.post("/register", async (req, res) => {
     const { email, username, password, repeatPassword } = req.body;
     try {
+        console.log({ email, username, password, repeatPassword })
         let [user, token] = await userManager.register(email, username, password, repeatPassword)
         res.json({
             authToken: token,
@@ -33,7 +34,6 @@ router.post("/login", async (req, res) => {
 
 
 router.get("/logout", (req, res) => {
-    
     res.end()
 })
 

@@ -30,7 +30,6 @@ export default function Register() {
         if( res instanceof Promise){
             res = await res
             let data = await res.json()
-            console.log(data)
             saveUserData(data)
         }
 
