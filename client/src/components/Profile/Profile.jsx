@@ -32,6 +32,18 @@ export default function Profile() {
                 .then(res => res.json())
                 .then(data => setPosts(Object.values(data)))
         }
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show")
+                }
+            })
+        })
+
+        const hiddenEls = document.querySelectorAll('.hidden')
+        hiddenEls.forEach((el) => observer.observe(el))
     }, [])
 
 
