@@ -16,11 +16,19 @@ export default function Links({ isAuth, setIsAuth }) {
     return (
         isAuth
             ?
-            <ul className="nav_links">
-                <li><Link to="/catalog" className="light" >Catalog</Link></li>
-                <li><Link to="/create" className="light" >Create</Link></li>
-                <li><a className="logout"onClick={logout}>Logout</a></li>
-            </ul >
+            <div>
+                <ul className="nav_links">
+                    <li><Link to="/catalog" className="light" >Catalog</Link></li>
+                    <li><Link to="/create" className="light" >Create</Link></li>
+                    <div className="light">
+                        <li><a className="logout " onClick={logout}>Logout</a></li>
+                    </div>
+                </ul >
+
+                <div className="profile">
+                    <Link to="/profile" ><img className="profileimg" src="/images/pngwing.com.png" alt="logo"></img></Link>
+                </div>
+            </div>
             :
             <ul className="nav_links">
                 <li><Link to="/catalog" className="light" >Catalog</Link></li>

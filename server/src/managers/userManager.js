@@ -60,3 +60,8 @@ exports.login = async (email, password) => {
 
     return [payload, token]
 }
+
+exports.FindUser = async (Id) => {
+    let user = await User.findById(Id)
+    return user
+}

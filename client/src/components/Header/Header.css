@@ -123,3 +123,9 @@ section {
 .logout:hover {
     cursor: pointer;
 }
+
+.profileimg {
+    width: 30px;
+    height: 30px;
+    margin-left: 12px;
+}

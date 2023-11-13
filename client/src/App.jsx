@@ -9,6 +9,7 @@ import CreateForm from "./components/Create/Create.jsx"
 import Catalog from "./components/Catalog/Catalog.jsx"
 import Details from "./components/Details/Details.jsx"
 import EditForm from "./components/EditForm/Edit.jsx"
+import Profile from "./components/Profile/Profile.jsx"
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false)
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<CreateForm />}></Route>
         <Route path="/catalog" element={<Catalog />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
         <Route path="/posts/:postId/details" element={<Details isAuth={isAuth}/>} />
         <Route path="/posts/:postId/edit" element={<EditForm />} />
 

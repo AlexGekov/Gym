@@ -45,3 +45,10 @@ exports.Want = async (Id, userId) => {
     return curPost.save()
 }
 
+
+exports.FindPostsByUser = async (userId) => {
+    let result = await post.find().lean()
+    result = result.filter(post => post.owner == userId)
+    return result
+}
+
