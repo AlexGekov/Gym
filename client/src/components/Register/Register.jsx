@@ -15,6 +15,7 @@ const InitialFormState = {
 export default function Register() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
+    const [checked, setChecked] = useState(false)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -37,60 +38,127 @@ export default function Register() {
         setFormValues(InitialFormState)
     }
 
+    function ShowPass() {
+        if (checked == false) {
+            setChecked(true)
+        } else {
+            setChecked(false)
+        }
+    }
+
     return (
         <div className="wrapper">
-            <div className="light">
-                <form action="POST">
-                    <h1>Register</h1>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            name="username"
-                            type="text"
-                            placeholder="Username"
-                            value={formValues.username}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            name="email"
-                            type="text"
-                            placeholder="Email"
-                            value={formValues.email}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            value={formValues.password}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            name="repeatPassword"
-                            type="password"
-                            placeholder="Repeat password"
-                            value={formValues.repeatPassword}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="btndiv">
-                        <button type="button" className="btn" onClick={submitForm} >Register</button>
-                    </div>
-                </form>
-            </div>
+            {checked
+                ?
+                <div className="light">
+                    <form action="POST">
+                        <h1>Register</h1>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="username"
+                                type="text"
+                                placeholder="Username"
+                                value={formValues.username}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="email"
+                                type="text"
+                                placeholder="Email"
+                                value={formValues.email}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="password"
+                                type="text"
+                                placeholder="Password"
+                                value={formValues.password}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                            <img className="eye" src="/images/eye-icon-1457.png" alt="eye" onClick={ShowPass} />
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="repeatPassword"
+                                type="password"
+                                placeholder="Repeat password"
+                                value={formValues.repeatPassword}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="btndiv">
+                            <button type="button" className="btn" onClick={submitForm} >Register</button>
+                        </div>
+                    </form>
+                </div>
+                :
+                <div className="light">
+                    <form action="POST">
+                        <h1>Register</h1>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="username"
+                                type="text"
+                                placeholder="Username"
+                                value={formValues.username}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="email"
+                                type="text"
+                                placeholder="Email"
+                                value={formValues.email}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                value={formValues.password}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                            <img className="eye" src="/images/eye-icon-1457.png" alt="eye" onClick={ShowPass} />
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                name="repeatPassword"
+                                type="password"
+                                placeholder="Repeat password"
+                                value={formValues.repeatPassword}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="btndiv">
+                            <button type="button" className="btn" onClick={submitForm} >Register</button>
+                        </div>
+                    </form>
+                </div>
+            }
+            
         </div>
     )
 }

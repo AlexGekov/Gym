@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom"
 export default function Loggin() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
-    const [err, seterr] = useState(undefined)
+    let [checked, setChecked] = useState(false)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -37,78 +37,117 @@ export default function Loggin() {
         setFormValues(InitialFormState)
     }
 
+    function ShowPass(){
+        if(checked == false){
+            setChecked(true)
+        }else {
+            setChecked(false)
+        }
+    }
+
     return (
         <div className="wrapper">
-            <div className="light">
-                <form action="POST">
-                    <h1>Sign in</h1>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            type="text"
-                            placeholder="Email"
-                            name="email"
-                            value={formValues.email}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            value={formValues.password}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="btndiv">
-                        <button type="button" className="btn" onClick={submitForm} >Sign in</button>
-                    </div>
-                </form>
-            </div>
+            {checked
+                ?
+                <div className="light">
+                    <form action="POST">
+                        <h1>Sign in</h1>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="Email"
+                                name="email"
+                                value={formValues.email}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="Password"
+                                name="password"
+                                value={formValues.password}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                            <img className="eye" src="/images/eye-icon-1457.png" alt="eye" onClick={ShowPass} />
+                        </div>
+                        <div className="btndiv">
+                            <button type="button" className="btn" onClick={submitForm} >Sign in</button>
+                        </div>
+                    </form>
+                </div>
+                :
+                <div className="light">
+                    <form action="POST">
+                        <h1>Sign in</h1>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="Email"
+                                name="email"
+                                value={formValues.email}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                        </div>
+                        <div className="input-box">
+                            <input
+                                className="input"
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                value={formValues.password}
+                                onChange={changeHandler}
+                                required
+                            ></input>
+                            <img className="eye" src="/images/eye-icon-1457.png" alt="eye" onClick={ShowPass}/>
+                        </div>
+                        <div className="btndiv">
+                            <button type="button" className="btn" onClick={submitForm} >Sign in</button>
+                        </div>
+                    </form>
+                </div>
+            }
         </div>
     )
 }
 
 
 
-
-{/* <section id="homePage">
-    <div className="box">
-        <div className="hidden">
-            <div className="light">
-                <form action="POST">
-                    <h1>Sign in</h1>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            type="text"
-                            placeholder="Email"
-                            name="email"
-                            value={formValues.email}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="input-box">
-                        <input
-                            className="input"
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            value={formValues.password}
-                            onChange={changeHandler}
-                            required
-                        ></input>
-                    </div>
-                    <div className="btndiv">
-                        <button type="button" className="btn" onClick={submitForm} >Sign in</button>
-                    </div>
-                </form>
+{/* <div className="wrapper">
+    <div className="light">
+        <form action="POST">
+            <h1>Sign in</h1>
+            <div className="input-box">
+                <input
+                    className="input"
+                    type="text"
+                    placeholder="Email"
+                    name="email"
+                    value={formValues.email}
+                    onChange={changeHandler}
+                    required
+                ></input>
             </div>
-        </div>
+            <div className="input-box">
+                <input
+                    className="input"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={formValues.password}
+                    onChange={changeHandler}
+                    required
+                ></input>
+            </div>
+            <div className="btndiv">
+                <button type="button" className="btn" onClick={submitForm} >Sign in</button>
+            </div>
+        </form>
     </div>
-</section> */}
+</div> */}

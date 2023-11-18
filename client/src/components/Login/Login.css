@@ -8,6 +8,16 @@
     background-color: none;
 }
 
+.eye{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+.eye:hover {
+    cursor: pointer;
+}
+
 .second{
     background-image: url("../images/Long-Butler-09.webp");
 }
