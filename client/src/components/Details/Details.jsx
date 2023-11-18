@@ -64,10 +64,12 @@ export default function Details({ isAuth }) {
             {postDetails
                 ?
                 <div className="parent">
-                    <h1 className="title" >{postDetails.name}</h1>
-                    <img className="image" src={postDetails.image}></img>
-                    <h2>Manufacturer: {postDetails.manufacturer}</h2>
-                    <p>Description: {postDetails.description}</p>
+                    <div className="light">
+                        <h1 className="title" >{postDetails.name}</h1>
+                        <img className="image" src={postDetails.image}></img>
+                        <h2>Manufacturer: {postDetails.manufacturer}</h2>
+                        <p>Description: {postDetails.description}</p>
+                    </div>
                     {isAuth
                         ?
                         <div>
@@ -95,12 +97,12 @@ export default function Details({ isAuth }) {
                                     }
                                 </div>
                             }
-                            <div>
+                            <div className="light">
                                 <h2>Wants: {wantsLength}</h2>
                             </div>
                         </div>
                         :
-                        <div>
+                        <div className="light">
                             <h2>Wants: {wantsLength}</h2>
                         </div>
                     }

@@ -79,6 +79,7 @@ export default function Home() {
                 <div className="light">
                     <div class="mapouter">
                         <div class="gmap_canvas">
+                            <h1>Come check us out!</h1>
                             <iframe className="Icomp" src="https://maps.google.com/maps?q=Fitness%201&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameBorder="0" scrolling="no"></iframe>
                             <a className="booklet" href="https://blooketjoin.org">blooket join</a>
                         </div>

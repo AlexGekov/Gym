@@ -72,8 +72,10 @@ export default function Profile() {
                 ?
                 <div className="UserInfo">
                     <img className="Profileimg" src="/images/pngwing.com.png" alt="logo"></img>
-                    <h1>Username: {user.username}</h1>
-                    <h1>Email: {user.email}</h1>
+                    <div className="light">
+                        <h1>Username: {user.username}</h1>
+                        <h1>Email: {user.email}</h1>
+                    </div>
                 </div>
                 :
                 <div>
