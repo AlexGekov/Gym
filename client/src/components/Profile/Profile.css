@@ -69,8 +69,8 @@ section {
     min-height: 100vh;
 }
 
-.box {
-    margin: 10%;
+.Box {
+    margin-top: 25%;
 }
 
 .hidden {
@@ -95,7 +95,9 @@ section {
 }
 
 .UserInfo {
+    position: absolute;
     text-align: center;
+    top: 200px;
 }
 
 .Profileimg {

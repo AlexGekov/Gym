@@ -88,7 +88,7 @@ export default function Profile() {
                 <button className="searchBtn" onClick={SearchHandler}>Search</button>
             </div>
             
-            <div className="box">
+            <div className="Box">
                 <div className="hidden">
                     <div className="light">
                         {posts

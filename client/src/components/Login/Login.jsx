@@ -116,38 +116,3 @@ export default function Loggin() {
         </div>
     )
 }
-
-
-
-{/* <div className="wrapper">
-    <div className="light">
-        <form action="POST">
-            <h1>Sign in</h1>
-            <div className="input-box">
-                <input
-                    className="input"
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    value={formValues.email}
-                    onChange={changeHandler}
-                    required
-                ></input>
-            </div>
-            <div className="input-box">
-                <input
-                    className="input"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={formValues.password}
-                    onChange={changeHandler}
-                    required
-                ></input>
-            </div>
-            <div className="btndiv">
-                <button type="button" className="btn" onClick={submitForm} >Sign in</button>
-            </div>
-        </form>
-    </div>
-</div> */}
