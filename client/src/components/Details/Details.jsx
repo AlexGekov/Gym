@@ -42,6 +42,7 @@ export default function Details({ isAuth }) {
 
     function Want(){
         let Token = sessionStorage.getItem("auth")
+
         let Data = {
             userId: sessionStorage.getItem("userId"),
             postId
@@ -57,6 +58,7 @@ export default function Details({ isAuth }) {
         })
 
         setWants(true)
+        setWantsLength(wantsLength + 1)
     }
 
     return (

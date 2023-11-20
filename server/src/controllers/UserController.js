@@ -7,8 +7,6 @@ router.post("/register", async (req, res) => {
         let [user, token] = await userManager.register(email, username, password, repeatPassword)
         res.json({
             authToken: token,
-            email: user.email,
-            username: user.username,
             userId: user._id
         })
     } catch (error) {
@@ -18,12 +16,11 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
+    console.log({ email, password })
     try {
         let [user, token] = await userManager.login(email, password)
         res.json({
             authToken: token,
-            email: user.email,
-            username: user.username,
             userId: user._id
         })
     } catch (error) {

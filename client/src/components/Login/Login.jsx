@@ -6,7 +6,7 @@ const InitialFormState = {
 }
 
 import "./Login.css"
-import { LogValidate } from "../../../api/userService"
+import { Login } from "../../../api/userService"
 import { saveUserData } from "../../../api/sessionStorage"
 import { useNavigate } from "react-router-dom"
 
@@ -25,7 +25,7 @@ export default function Loggin() {
     }
 
     const submitForm = async () => {
-        let res = LogValidate(formValues)
+        let res = Login(formValues)
 
         if (res instanceof Promise) {
             res = await res

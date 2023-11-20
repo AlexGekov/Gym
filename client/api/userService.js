@@ -1,5 +1,3 @@
-
-
 const passwordLength = 5
 const emailLength = 10
 const usernameLength = 6
@@ -28,7 +26,7 @@ export function RegValidate(Data){
 }
 
 
-export function LogValidate(Data) {
+export function Login(Data) {
     let info = JSON.stringify(Data)
 
     return fetch(`http://localhost:3030/users/login`, {
