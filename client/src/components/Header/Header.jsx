@@ -4,14 +4,12 @@ import { Link } from "react-router-dom"
 
 import "./Header.css"
 
-export default function Header({isAuth, setIsAuth}) {
+export default function Header({ isAuth, setIsAuth }) {
 
     useEffect(() => {
         let token = sessionStorage.getItem("auth")
         token ? setIsAuth(true) : setIsAuth(false)
-    },[])
 
-    useEffect(() => {
         let darkMode = sessionStorage.setItem("darkMode", "null")
         const darkModeToggle = document.getElementsByClassName("switch")[0]
 
@@ -23,7 +21,7 @@ export default function Header({isAuth, setIsAuth}) {
                 disabledDarkMode()
             }
         })
-    },[])
+    }, [])
 
     const enableDarkMode = () => {
         let elements = document.getElementsByClassName("light")
@@ -49,9 +47,9 @@ export default function Header({isAuth, setIsAuth}) {
 
     return (
         <header id="header">
-            <Link to="/" ><img className="img" src="/images/429d631659a11a9eb666b103d811470a.png" alt="logo"></img></Link>
+            <Link to="/" ><img className="img" src="/images/logogrey.png" alt="logo"></img></Link>
             <nav id="navbar">
-            <Links isAuth={isAuth} setIsAuth={setIsAuth}></Links>
+                <Links isAuth={isAuth} setIsAuth={setIsAuth}></Links>
             </nav>
             <div className="toggle">
                 <input className="thingy" type="checkbox" id="lightmode-toggle"></input>
