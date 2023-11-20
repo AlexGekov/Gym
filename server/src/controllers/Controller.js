@@ -40,10 +40,22 @@ router.get("/:postId/details", async (req, res) => {
     }
 })
 
+router.get("/catalog/:search/:userId", async (req, res) => {
+    const search = req.params.search
+    const userId = req.params.userId
+    try {
+        const posts = await Manager.SearchPostsByUser(search, userId)
+        console.log(posts)
+        res.json(posts).end()
+    } catch (err) {
+        res.status(404)
+    }
+})
+
 router.get("/:userId/catalog", async (req, res) => {
     const userId = req.params.userId
     try {
-        const posts = await Manager.FindPostsByUser(userId)
+        const posts = await Manager.FindAllPostsByUser(userId)
         res.json(posts).end()
     } catch (err) {
         res.status(404)

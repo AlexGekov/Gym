@@ -18,7 +18,7 @@ export default function Profile() {
     useEffect(() => {
         let userId = sessionStorage.getItem("userId")
         FetchUserData()
-        FetchData()
+        FetchAllPosts()
 
 
         async function FetchUserData() {
@@ -27,10 +27,16 @@ export default function Profile() {
                 .then(data => SetUser(data))
         }
 
-        async function FetchData() {
+        async function FetchAllPosts() {
             await fetch(`http://localhost:3030/posts/${userId}/catalog`)
                 .then(res => res.json())
-                .then(data => setPosts(Object.values(data)))
+                .then(data => {
+                    if (Object.values(data) > 0){
+                        setPosts(Object.values(data))
+                    }else{
+                        setPosts(false)
+                    }
+                })
         }
 
 
@@ -55,7 +61,8 @@ export default function Profile() {
     }
 
     function SearchHandler() {
-        fetch(`http://localhost:3030/posts/catalog/${formValues.search}`)
+        let userId = sessionStorage.getItem("userId")
+        fetch(`http://localhost:3030/posts/catalog/${formValues.search}/${userId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {

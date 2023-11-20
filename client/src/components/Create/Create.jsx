@@ -25,15 +25,7 @@ export default function CreateForm() {
     }
 
     const submitForm = async () => {
-        let res = Create(formValues)
-
-        if (res instanceof Promise) {
-            res = await res
-            let data = await res.json()
-            console.log(data)
-            saveUserData(data)
-        }
-
+        Create(formValues)
         navigate("/catalog")
         setFormValues(InitialFormState)
     }

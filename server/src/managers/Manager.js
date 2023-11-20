@@ -45,10 +45,17 @@ exports.Want = async (Id, userId) => {
     return curPost.save()
 }
 
-
-exports.FindPostsByUser = async (userId) => {
+exports.FindAllPostsByUser = async (userId) => {
     let result = await post.find().lean()
     result = result.filter(post => post.owner == userId)
+    return result
+}
+
+
+exports.SearchPostsByUser = async (search, userId) => {
+    let result = await post.find().lean()
+    result = result.filter(post => post.owner == userId)
+    result = result.filter(post => post.name.toLowerCase().includes(Param.toLowerCase()))
     return result
 }
 
