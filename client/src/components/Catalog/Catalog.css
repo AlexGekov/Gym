@@ -10,6 +10,10 @@
     transition: 0.3s ease;
 }
 
+.post{
+    margin: 50px;
+}
+
 .searchbox{
     position: absolute;
     top: 200px;

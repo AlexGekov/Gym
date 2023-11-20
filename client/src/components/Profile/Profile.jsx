@@ -31,7 +31,8 @@ export default function Profile() {
             await fetch(`http://localhost:3030/posts/${userId}/catalog`)
                 .then(res => res.json())
                 .then(data => {
-                    if (Object.values(data) > 0){
+                    if (Object.values(data).length > 0){
+                        
                         setPosts(Object.values(data))
                     }else{
                         setPosts(false)

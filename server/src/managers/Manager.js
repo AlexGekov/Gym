@@ -55,7 +55,7 @@ exports.FindAllPostsByUser = async (userId) => {
 exports.SearchPostsByUser = async (search, userId) => {
     let result = await post.find().lean()
     result = result.filter(post => post.owner == userId)
-    result = result.filter(post => post.name.toLowerCase().includes(Param.toLowerCase()))
+    result = result.filter(post => post.name.toLowerCase().includes(search.toLowerCase()))
     return result
 }
 
