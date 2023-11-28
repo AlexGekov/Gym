@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-
 import { RegValidate } from "../../../api/userService"  
 import "./Register.css"
+import AuthContext from "../../contexts/AuthContext.jsx"
+
 
 const InitialFormState = {
     username: "",
@@ -15,6 +16,7 @@ export default function Register({ isAuth, setIsAuth }) {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     const [checked, setChecked] = useState(false)
+    const {loginRegisterHandler } = useContext(AuthContext)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -30,10 +32,8 @@ export default function Register({ isAuth, setIsAuth }) {
         if( res instanceof Promise){
             res = await res
             let data = await res.json()
-            saveUserData(data)
-            setIsAuth(true)
+            loginRegisterHandler(data)
         }
-
         navigate("/catalog")
         setFormValues(InitialFormState)
     }

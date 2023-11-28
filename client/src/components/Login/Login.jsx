@@ -14,7 +14,7 @@ export default function Loggin() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     let [checked, setChecked] = useState(false)
-    const { auth, loginRegisterHandler} = useContext(AuthContext)
+    const {loginRegisterHandler} = useContext(AuthContext)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
