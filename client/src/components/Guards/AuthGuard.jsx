@@ -6,7 +6,7 @@ export default function AuthGuard() {
     const { auth } = useContext(AuthContext)
 
     if (!auth.authToken){
-        console.log("here")
+        console.log("RouteGuard activated!")
         return <Navigate to="/login" />
     }
 

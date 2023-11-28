@@ -23,10 +23,14 @@ router.get("/catalog/:search", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     const { kind, name, manufacturer, description, image, owner } = req.body
+    console.log({ kind, name, manufacturer, description, image, owner })
     try {
         await Manager.create({ kind, name, manufacturer, description, image, owner })
+        console.log("created")
     } catch (err) {
-        res.status(404)
+        res.status(400).json({
+            message: err.message
+        })
     }
 })
 

@@ -10,7 +10,9 @@ router.post("/register", async (req, res) => {
             userId: user._id
         })
     } catch (error) {
-        res.status(404)
+        res.status(400).json({
+            message: error.message
+        })
     }
 })
 
@@ -23,7 +25,9 @@ router.post("/login", async (req, res) => {
             userId: user._id
         })
     } catch (error) {
-        res.status(404)
+        res.status(400).json({
+            message: error.message
+        })
     }
 })
 

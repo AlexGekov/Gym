@@ -93,3 +93,7 @@
     size-adjust: 10px 10px;
     text-align: center;
 }
+
+.err{
+    color: red
+}

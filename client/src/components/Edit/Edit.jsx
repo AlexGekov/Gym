@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useParams,useNavigate } from "react-router-dom"
 import { Edit } from "../../../api/postService"
+import AuthContext from "../../contexts/AuthContext.jsx"
 
 const InitialFormState = {
     kind: "",
@@ -15,6 +16,8 @@ import "./Edit.css"
 export default function EditForm() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
+    const [err, setErr] = useState(undefined)
+    const { auth } = useContext(AuthContext)
     let { postId } = useParams()
     let navigate = useNavigate()
 
@@ -34,11 +37,19 @@ export default function EditForm() {
     }
 
     const submitForm = async () => {
-        let res = Edit(formValues)
+        let res
+        let caughtErr
 
-        if (res instanceof Promise) {
-            res = await res
-            let data = await res.json()
+        try {
+            res = await Edit(formValues, auth)
+        } catch (error) {
+            caughtErr = error.message
+        }
+
+        if (caughtErr != undefined) {
+            return setErr(caughtErr)
+        } else {
+            setErr(undefined)
         }
 
         navigate("/catalog")
@@ -49,6 +60,12 @@ export default function EditForm() {
             <div className="light">
                 <form action="POST">
                     <h1>Edit Post</h1>
+                    {err
+                        ?
+                        <p className="err">{err}</p>
+                        :
+                        <p className="err"></p>
+                    }
                     <div className="input-box">
                         <input
                             className="input"

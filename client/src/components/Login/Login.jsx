@@ -13,7 +13,8 @@ const InitialFormState = {
 export default function Loggin() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
-    let [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(false)
+    const [err, setErr] = useState(undefined)
     const {loginRegisterHandler} = useContext(AuthContext)
     let navigate = useNavigate()
 
@@ -25,14 +26,17 @@ export default function Loggin() {
     }
 
     const submitForm = async () => {
-        let res = Login(formValues)
+        let res = await Login(formValues)
+        let data = await res.json()
 
-        if (res instanceof Promise) {
-            res = await res
-            let data = await res.json()
-            loginRegisterHandler(data)
+        if(!res.ok){
+            console.log(data.message)
+            return setErr(data.message)
+        }else{
+            setErr(undefined)
         }
-        
+
+        loginRegisterHandler(data)
         navigate("/catalog")
         setFormValues(InitialFormState)
     }
@@ -52,6 +56,12 @@ export default function Loggin() {
                 <div className="light">
                     <form action="POST">
                         <h1>Sign in</h1>
+                        {err
+                            ?
+                            <p className = "err">{err}</p>
+                            :
+                            <p className="err"></p>
+                        }
                         <div className="input-box">
                             <input
                                 className="input"
@@ -84,6 +94,12 @@ export default function Loggin() {
                 <div className="light">
                     <form action="POST">
                         <h1>Sign in</h1>
+                        {err
+                            ?
+                            <p className="err">{err}</p>
+                            :
+                            <p className="err"></p>
+                        }
                         <div className="input-box">
                             <input
                                 className="input"

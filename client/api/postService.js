@@ -1,13 +1,13 @@
-export function Create(Data) {
+export function Create(Data, userData) {
     Validate(Data)
 
-    let Token = sessionStorage.getItem("auth")
+    let Token = userData.authToken
 
     if (!Token) {
         throw new Error("You need to be logged in!")
     }
 
-    Data.owner = sessionStorage.getItem("userId")
+    Data.owner = userData.userId
 
     let info = JSON.stringify(Data)
 
@@ -23,18 +23,16 @@ export function Create(Data) {
 }
 
 
-export function Edit(Data) {
+export function Edit(Data, userData) {
     Validate(Data)
 
-    let Token = sessionStorage.getItem("auth")
+    let Token = userData.authToken
 
     if (!Token) {
         throw new Error("You need to be logged in!")
     }
 
     let info = JSON.stringify(Data)
-
-    console.log(info)
 
     return fetch(`http://localhost:3030/posts/${Data._id}/edit`, {
         method: "PUT",
@@ -44,23 +42,6 @@ export function Edit(Data) {
             "X-Authorization": Token
         },
         body: info
-    })
-}
-
-export function Delete() {
-    let Token = sessionStorage.getItem("auth")
-
-    if (!Token) {
-        throw new Error("You need to be logged in!")
-    }
-
-    return fetch(`http://localhost:3030/users/login`, {
-        method: "DELETE",
-        headers: 
-        {
-            "Content-type": "application/json",
-            "X-Authorization": Token
-        },
     })
 }
 

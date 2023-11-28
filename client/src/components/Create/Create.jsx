@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { Create } from "../../../api/postService"
+import AuthContext from "../../contexts/AuthContext.jsx"
 
 const InitialFormState = {
     kind: "",
@@ -15,6 +16,8 @@ import "./Create.css"
 export default function CreateForm() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
+    const [err, setErr] = useState(undefined)
+    const { auth } = useContext(AuthContext)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -25,7 +28,21 @@ export default function CreateForm() {
     }
 
     const submitForm = async () => {
-        Create(formValues)
+        let res
+        let caughtErr
+
+        try {
+            res = await Create(formValues, auth)
+        } catch (error) {
+            caughtErr = error.message
+        }
+
+        if (caughtErr != undefined) {
+            return setErr(caughtErr)
+        } else {
+            setErr(undefined)
+        }
+        console.log("about to nav")
         navigate("/catalog")
         setFormValues(InitialFormState)
     }
@@ -35,6 +52,12 @@ export default function CreateForm() {
             <div className="light">
                 <form action="POST">
                     <h1>Create Post</h1>
+                    {err
+                        ?
+                        <p className="err">{err}</p>
+                        :
+                        <p className="err"></p>
+                    }
                     <div className="input-box">
                         <input
                             className="input"

@@ -125,6 +125,7 @@ section {
 }
 
 .profileimg {
+    margin-top: 8px;
     width: 30px;
     height: 30px;
     margin-left: 12px;

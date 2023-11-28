@@ -40,7 +40,7 @@ exports.register = async (email, username, password, repeatPassword) => {
 exports.login = async (email, password) => {
     const user = await User.findOne({ email })
 
-    if (!email) {
+    if (!user) {
         throw new Error("Cannot find email or password")
     }
 

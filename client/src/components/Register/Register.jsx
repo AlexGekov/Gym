@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { RegValidate } from "../../../api/userService"  
+import { RegValidate } from "../../../api/userService"
 import "./Register.css"
 import AuthContext from "../../contexts/AuthContext.jsx"
 
@@ -9,14 +9,15 @@ const InitialFormState = {
     username: "",
     email: "",
     password: "",
-    repeatPassword: "" 
+    repeatPassword: ""
 }
 
 export default function Register({ isAuth, setIsAuth }) {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     const [checked, setChecked] = useState(false)
-    const {loginRegisterHandler } = useContext(AuthContext)
+    const [err, setError] = useState(undefined)
+    const { loginRegisterHandler } = useContext(AuthContext)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -27,13 +28,23 @@ export default function Register({ isAuth, setIsAuth }) {
     }
 
     const submitForm = async () => {
-        let res = RegValidate(formValues)
-
-        if( res instanceof Promise){
-            res = await res
-            let data = await res.json()
-            loginRegisterHandler(data)
+        let res
+        let caughtErr
+        try {
+            res = await RegValidate(formValues)
+        }catch(error){
+            caughtErr = error.message
         }
+
+        if (caughtErr != undefined) {
+            return setError(caughtErr)
+        } else {
+            setError(undefined)
+        }
+
+
+        let data = await res.json()
+        loginRegisterHandler(data)
         navigate("/catalog")
         setFormValues(InitialFormState)
     }
@@ -53,6 +64,12 @@ export default function Register({ isAuth, setIsAuth }) {
                 <div className="light">
                     <form action="POST">
                         <h1>Register</h1>
+                        {err
+                            ?
+                            <p className="err">{err}</p>
+                            :
+                            <p className="err"></p>
+                        }
                         <div className="input-box">
                             <input
                                 className="input"
@@ -107,6 +124,12 @@ export default function Register({ isAuth, setIsAuth }) {
                 <div className="light">
                     <form action="POST">
                         <h1>Register</h1>
+                        {err
+                            ?
+                            <p className="err">{err}</p>
+                            :
+                            <p className="err"></p>
+                        }
                         <div className="input-box">
                             <input
                                 className="input"
@@ -158,7 +181,7 @@ export default function Register({ isAuth, setIsAuth }) {
                     </form>
                 </div>
             }
-            
+
         </div>
     )
 }
