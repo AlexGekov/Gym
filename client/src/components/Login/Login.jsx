@@ -11,7 +11,7 @@ import { saveUserData } from "../../../api/sessionStorage"
 import { useNavigate } from "react-router-dom"
 
 
-export default function Loggin() {
+export default function Loggin({ isAuth, setIsAuth }) {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     let [checked, setChecked] = useState(false)
@@ -31,6 +31,7 @@ export default function Loggin() {
             res = await res
             let data = await res.json()
             saveUserData(data)
+            setIsAuth(true)
         }
         
         navigate("/catalog")

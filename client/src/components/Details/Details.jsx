@@ -100,12 +100,12 @@ export default function Details({ isAuth }) {
                                 </div>
                             }
                             <div className="light">
-                                <h2>Wants: {wantsLength}</h2>
+                                <h2>Wanted by {wantsLength} people</h2>
                             </div>
                         </div>
                         :
                         <div className="light">
-                            <h2>Wants: {wantsLength}</h2>
+                            <h2>Wanted by {wantsLength} people</h2>
                         </div>
                     }
                 </div>

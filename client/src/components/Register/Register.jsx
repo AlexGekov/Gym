@@ -12,7 +12,7 @@ const InitialFormState = {
     repeatPassword: "" 
 }
 
-export default function Register() {
+export default function Register({ isAuth, setIsAuth }) {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     const [checked, setChecked] = useState(false)
@@ -32,6 +32,7 @@ export default function Register() {
             res = await res
             let data = await res.json()
             saveUserData(data)
+            setIsAuth(true)
         }
 
         navigate("/catalog")

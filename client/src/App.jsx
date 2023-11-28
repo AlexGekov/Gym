@@ -33,8 +33,8 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        <Route path="/login" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
         <Route path="/create" element={<CreateForm />}></Route>
         <Route path="/catalog" element={<Catalog />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
