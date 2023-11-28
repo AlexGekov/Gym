@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { Route,Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 
+import { AuthProvider } from "./contexts/AuthContext.jsx"
 import Header from "./components/Header/Header.jsx"
 import Home from "./components/Home/Home.jsx"
 import Register from "./components/Register/Register.jsx"
@@ -12,8 +13,7 @@ import EditForm from "./components/EditForm/Edit.jsx"
 import Profile from "./components/Profile/Profile.jsx"
 
 export default function App() {
-  const [isAuth, setIsAuth] = useState(false)
-
+  
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -28,20 +28,20 @@ export default function App() {
   })
 
   return (
-    <>
-      <Header isAuth={isAuth} setIsAuth={setIsAuth} ></Header>
+      <AuthProvider>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register isAuth={isAuth} setIsAuth={setIsAuth} />} />
-        <Route path="/login" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
-        <Route path="/create" element={<CreateForm />}></Route>
-        <Route path="/catalog" element={<Catalog />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/posts/:postId/details" element={<Details isAuth={isAuth}/>} />
-        <Route path="/posts/:postId/edit" element={<EditForm />} />
+        <Header></Header>
 
-      </Routes>
-    </>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/create" element={<CreateForm />}></Route>
+          <Route path="/catalog" element={<Catalog />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/posts/:postId/details" element={<Details />} />
+          <Route path="/posts/:postId/edit" element={<EditForm />} />
+        </Routes>
+      </AuthProvider>
   )
 }

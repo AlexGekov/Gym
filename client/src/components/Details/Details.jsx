@@ -1,36 +1,36 @@
-import { useEffect, useState, } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate, useParams, Link } from "react-router-dom"
-
+import AuthContext from "../../contexts/AuthContext"
 
 import "./Details.css"
 
 
-export default function Details({ isAuth }) {
-
+export default function Details() {
+    const { auth } = useContext(AuthContext)
     let [postDetails, setPostDetails] = useState(undefined)
     let [wants, setWants] = useState(undefined)
     let [wantsLength, setWantsLength] = useState(undefined)
 
     let { postId } = useParams()
     let navigate = useNavigate()
-    let userId = sessionStorage.getItem("userId")
+    let userId = auth.userId
 
     useEffect(() => {
         fetch(`http://localhost:3030/posts/${postId}/details`)
-        .then(res => res.json())
-        .then(data => {
-            if (data.Want){
-                setWantsLength(data.Want.length)
-                if (data.Want.includes(userId)) {
-                    setWants(true)
+            .then(res => res.json())
+            .then(data => {
+                if (data.Want) {
+                    setWantsLength(data.Want.length)
+                    if (data.Want.includes(userId)) {
+                        setWants(true)
+                    }
                 }
-            }
-            setPostDetails(data)
-        })
+                setPostDetails(data)
+            })
     }, [])
 
     function Delete() {
-        let token = sessionStorage.getItem("auth")
+        let token = auth.authToken
 
         fetch(`http://localhost:3030/posts/${postId}/details`, {
             method: "DELETE",
@@ -40,11 +40,11 @@ export default function Details({ isAuth }) {
         navigate("/catalog")
     }
 
-    function Want(){
-        let Token = sessionStorage.getItem("auth")
+    function Want() {
+        let Token = auth.authToken
 
         let Data = {
-            userId: sessionStorage.getItem("userId"),
+            userId: auth.userId,
             postId
         }
 
@@ -72,10 +72,10 @@ export default function Details({ isAuth }) {
                         <h2>Manufacturer: {postDetails.manufacturer}</h2>
                         <p>Description: {postDetails.description}</p>
                     </div>
-                    {isAuth
+                    {auth.authToken
                         ?
                         <div>
-                            {postDetails.owner == sessionStorage.getItem("userId")
+                            {postDetails.owner == auth.userId
                                 ?
                                 <div>
                                     <div className="small">

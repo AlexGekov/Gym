@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { RegValidate } from "../../../api/userService"
-import { saveUserData } from "../../../api/sessionStorage"
+import { RegValidate } from "../../../api/userService"  
 import "./Register.css"
 
 const InitialFormState = {

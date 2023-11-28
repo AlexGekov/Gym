@@ -1,20 +1,20 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import "./Login.css"
+import { Login } from "../../../api/userService"
+import { useNavigate } from "react-router-dom"
+import AuthContext from "../../contexts/AuthContext.jsx"
 
 const InitialFormState = {
     email: "",
     password: "",
 }
 
-import "./Login.css"
-import { Login } from "../../../api/userService"
-import { saveUserData } from "../../../api/sessionStorage"
-import { useNavigate } from "react-router-dom"
 
-
-export default function Loggin({ isAuth, setIsAuth }) {
+export default function Loggin() {
 
     const [formValues, setFormValues] = useState(InitialFormState)
     let [checked, setChecked] = useState(false)
+    const { auth, loginRegisterHandler} = useContext(AuthContext)
     let navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -30,8 +30,7 @@ export default function Loggin({ isAuth, setIsAuth }) {
         if (res instanceof Promise) {
             res = await res
             let data = await res.json()
-            saveUserData(data)
-            setIsAuth(true)
+            loginRegisterHandler(data)
         }
         
         navigate("/catalog")

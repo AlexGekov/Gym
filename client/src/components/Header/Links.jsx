@@ -1,27 +1,26 @@
-import { removeUserData } from "../../../api/sessionStorage"
 import "./Header.css"
 import { Link } from "react-router-dom"
+import AuthContext from "../../contexts/AuthContext"
+import { useContext } from "react"
 
-export default function Links({ isAuth, setIsAuth }) {
+export default function Links() {
+    const { auth, logoutHandler } = useContext(AuthContext)
 
     async function logout(e) {
         e.preventDefault()
-
         await fetch('http://localhost:3030/users/logout')
-        removeUserData()
-
-        setIsAuth(false)
+        logoutHandler()
     }
 
     return (
-        isAuth
+        auth.authToken
             ?
             <div>
                 <ul className="nav_links">
                     <li><Link to="/catalog" className="light" >Catalog</Link></li>
                     <li><Link to="/create" className="light" >Create</Link></li>
                     <div className="light">
-                        <li><a className="logout " onClick={logout}>Logout</a></li>
+                        <li><a className="logout" onClick={logout}>Logout</a></li>
                     </div>
                 </ul >
 

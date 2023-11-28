@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom"
+import AuthContext from "../../contexts/AuthContext"
 
 
 import "./Profile.css"
@@ -11,12 +12,13 @@ const InitialFormState = {
 
 export default function Profile() {
 
+    const { auth, loginRegisterHandler } = useContext(AuthContext)
     const [formValues, setFormValues] = useState(InitialFormState)
     const [user, SetUser] = useState(undefined)
     const [posts, setPosts] = useState(undefined)
 
     useEffect(() => {
-        let userId = sessionStorage.getItem("userId")
+        let userId = auth.userId
         FetchUserData()
         FetchAllPosts()
 
@@ -62,7 +64,7 @@ export default function Profile() {
     }
 
     function SearchHandler() {
-        let userId = sessionStorage.getItem("userId")
+        let userId = auth.userId
         fetch(`http://localhost:3030/posts/catalog/${formValues.search}/${userId}`)
             .then(res => res.json())
             .then(data => {
