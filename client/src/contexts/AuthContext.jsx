@@ -4,9 +4,10 @@ const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(() => {
-        const isAuth = sessionStorage.getItem("authToken")
-        if(isAuth){
-            return JSON.parse(isAuth)
+        const sessionState = sessionStorage.getItem("authToken")
+
+        if (sessionState) {
+            return JSON.parse(sessionState)
         }
 
         return {}
