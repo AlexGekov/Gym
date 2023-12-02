@@ -4,7 +4,6 @@ Overview
 The fitness website is a platform designed to facilitate fitness enthusiasts in sharing information, connecting with others, and accessing fitness-related content. The website has been developed using various technologies: RESTful APIs powered by Express for the backend, user authentication with JWT (JSON Web Tokens), React for the frontend, and MongoDB for data storage. Additionally, Google Maps integration has been included to locate specific real-life stores relevant to fitness.
 
 Functionality
-
 User Authentication:
 Register: Users can create new accounts by providing necessary information.
 Login: Existing users can log in securely using their credentials.
