@@ -30,15 +30,14 @@ export default function Loggin() {
         let data = await res.json()
 
         if(!res.ok){
-            console.log(data.message)
             return setErr(data.message)
         }else{
             setErr(undefined)
         }
 
         loginRegisterHandler(data)
-        navigate("/catalog")
         setFormValues(InitialFormState)
+        navigate("/catalog")
     }
 
     function ShowPass(){

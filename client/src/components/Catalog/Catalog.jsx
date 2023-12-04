@@ -61,7 +61,7 @@ export default function Catalog() {
                 <input className="search" type="text" name="search" placeholder="Search..." value={formValues.search} onChange={changeHandler}></input>
                 <button className="searchBtn" onClick={SearchHandler}>Search</button>
             </div>
-            <div className="box">
+            <div className="itemBox">
                 <div className="hidden">
                     <div className="light">
                         {posts 

@@ -52,7 +52,7 @@ export default function Header() {
                 <input className="thingy" type="checkbox" id="lightmode-toggle"></input>
                 <label className="switch" htmlFor="lightmode-toggle"></label>
             </div>
-            <a className="contact"><button>Contact us!</button></a>
+            <Link to="about"><button className="conact">Contact us!</button></Link>
         </header>
     )
 }

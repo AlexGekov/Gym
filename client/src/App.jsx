@@ -12,9 +12,10 @@ import Details from "./components/Details/Details.jsx"
 import EditForm from "./components/Edit/Edit.jsx"
 import Profile from "./components/Profile/Profile.jsx"
 import AuthGuard from "./components/Guards/AuthGuard.jsx"
+import About from "./components/About/About.jsx"
 
 export default function App() {
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -29,15 +30,16 @@ export default function App() {
   })
 
   return (
-      <AuthProvider>
+    <AuthProvider>
 
-        <Header></Header>
+      <Header></Header>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/catalog" element={<Catalog />}></Route>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/catalog" element={<Catalog />}></Route>
+        <Route path="/about" element={<About />}></Route>
 
         <Route element={<AuthGuard />}>
           <Route path="/create" element={<CreateForm />}></Route>
@@ -45,8 +47,9 @@ export default function App() {
           <Route path="/posts/:postId/details" element={<Details />} />
           <Route path="/posts/:postId/edit" element={<EditForm />} />
         </Route>
-        </Routes>
-        
-      </AuthProvider>
+
+      </Routes>
+
+    </AuthProvider>
   )
 }
