@@ -32,12 +32,13 @@ export default function Details() {
     function Delete() {
         let token = auth.authToken
 
-        fetch(`http://localhost:3030/posts/${postId}/details`, {
-            method: "DELETE",
-            headers: { "X-Authorization": token }
-        })
-
-        navigate("/catalog")
+        if(confirm("Do you want to delete this item?")){
+            fetch(`http://localhost:3030/posts/${postId}/details`, {
+                method: "DELETE",
+                headers: { "X-Authorization": token }
+            })
+            navigate("/catalog")
+        }
     }
 
     function Want() {
