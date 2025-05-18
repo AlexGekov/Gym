@@ -5,7 +5,7 @@ import AuthContext from "../../contexts/AuthContext.jsx"
 
 const InitialFormState = {
     kind: "",
-    name: "",   
+    name: "",
     manufacturer: "",
     description: "",
     image: "",
@@ -32,19 +32,15 @@ export default function CreateForm() {
         let caughtErr
 
         try {
+            console.log('pre')
             res = await Create(formValues, auth)
+            console.log("about to nav")
+            navigate("/catalog")
+            setFormValues(InitialFormState)
         } catch (error) {
             caughtErr = error.message
-        }
-
-        if (caughtErr != undefined) {
             return setErr(caughtErr)
-        } else {
-            setErr(undefined)
         }
-        console.log("about to nav")
-        navigate("/catalog")
-        setFormValues(InitialFormState)
     }
 
     return (

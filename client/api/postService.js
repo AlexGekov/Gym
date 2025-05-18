@@ -10,7 +10,6 @@ export function Create(Data, userData) {
     Data.owner = userData.userId
 
     let info = JSON.stringify(Data)
-
     return fetch(`http://localhost:3030/posts/create`, {
         method: "POST",
         headers:

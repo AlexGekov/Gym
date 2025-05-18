@@ -24,7 +24,7 @@ export default function About() {
                     <div className="light">
                         <img className="arnoldImg" src="/images/Long-Butler-09.webp"></img>
                         <h1 className="heading">Who are we</h1>
-                        <p className="info" >We're passionate about empowering your journey to peak performance. Our mission? To fuel your potential with premium supplements and top-notch equipment that elevates every workout. From boosting endurance to sculpting strength, we're your trusted ally on the path to fitness greatness. Backed by science and crafted for results, our products are designed to support your aspirations and exceed your expectations. Join us in embracing a lifestyle of vitality, strength, and wellness. Let's conquer fitness together!"</p>
+                        <p className="info light" >We're passionate about empowering your journey to peak performance. Our mission? To fuel your potential with premium supplements and top-notch equipment that elevates every workout. From boosting endurance to sculpting strength, we're your trusted ally on the path to fitness greatness. Backed by science and crafted for results, our products are designed to support your aspirations and exceed your expectations. Join us in embracing a lifestyle of vitality, strength, and wellness. Let's conquer fitness together!"</p>
                     </div>
                 </div>
             </div>

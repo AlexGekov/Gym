@@ -27,6 +27,7 @@ router.post("/create", async (req, res) => {
     try {
         await Manager.create({ kind, name, manufacturer, description, image, owner })
         console.log("created")
+        res.json(post).end()
     } catch (err) {
         res.status(400).json({
             message: err.message
